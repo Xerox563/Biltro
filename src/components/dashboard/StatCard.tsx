@@ -1,31 +1,51 @@
 "use client";
 
 import { motion } from "framer-motion";
+import AnimatedNumber from "@/components/ui/AnimatedNumber";
 
 export default function StatCard({
   icon,
   value,
   label,
-  tint,
+  gradient,
+  glow,
+  index = 0,
 }: {
   icon: string;
   value: number;
   label: string;
-  tint: string;
+  gradient: string;
+  glow: string;
+  index?: number;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -3 }}
-      className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm"
+      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ delay: index * 0.08, type: "spring", stiffness: 220, damping: 22 }}
+      whileHover={{ y: -6 }}
+      className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-5 shadow-[0_8px_30px_-12px_rgba(76,29,149,0.18)] backdrop-blur-xl"
     >
-      <span className={`flex h-10 w-10 items-center justify-center rounded-xl text-lg ${tint}`}>
-        {icon}
-      </span>
-      <div>
-        <p className="text-xl font-bold">{value}</p>
-        <p className="text-xs text-black/50">{label}</p>
+      <motion.div
+        aria-hidden
+        animate={{ opacity: [0.35, 0.6, 0.35] }}
+        transition={{ duration: 5 + index, repeat: Infinity, ease: "easeInOut" }}
+        className={`absolute -right-8 -top-10 h-28 w-28 rounded-full blur-2xl ${glow}`}
+      />
+
+      <div className="relative flex items-center gap-3">
+        <motion.span
+          whileHover={{ rotate: -8, scale: 1.08 }}
+          className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br text-lg shadow-lg ${gradient}`}
+        >
+          {icon}
+        </motion.span>
+        <div>
+          <p className="text-2xl font-bold tracking-tight text-ink">
+            <AnimatedNumber value={value} delay={index * 0.08} />
+          </p>
+          <p className="text-xs font-medium text-ink-soft">{label}</p>
+        </div>
       </div>
     </motion.div>
   );

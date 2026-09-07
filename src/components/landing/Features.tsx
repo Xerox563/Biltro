@@ -20,7 +20,7 @@ export default function Features() {
         viewport={{ once: true }}
         className="mb-14 text-center"
       >
-        <span className="rounded-full bg-indigo-100 px-4 py-1 text-xs font-medium text-indigo-700">
+        <span className="rounded-full bg-violet-100 px-4 py-1 text-xs font-medium text-violet-700">
           Everything you need
         </span>
         <h2 className="mt-4 text-3xl font-bold md:text-4xl">A smarter way to manage warranties</h2>
@@ -37,7 +37,7 @@ export default function Features() {
             whileHover={{ scale: 1.02 }}
             className="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm"
           >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-xl">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-xl">
               {f.icon}
             </span>
             <div>

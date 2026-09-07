@@ -22,7 +22,7 @@ export default function FAQ() {
         viewport={{ once: true }}
         className="mb-10 text-center"
       >
-        <span className="rounded-full bg-indigo-100 px-4 py-1 text-xs font-medium text-indigo-700">FAQs</span>
+        <span className="rounded-full bg-violet-100 px-4 py-1 text-xs font-medium text-violet-700">FAQs</span>
         <h2 className="mt-4 text-3xl font-bold md:text-4xl">Still have questions?</h2>
       </motion.div>
 

@@ -18,7 +18,7 @@ export default function HowItWorks() {
         viewport={{ once: true }}
         className="mb-14 text-center"
       >
-        <span className="rounded-full bg-indigo-100 px-4 py-1 text-xs font-medium text-indigo-700">
+        <span className="rounded-full bg-violet-100 px-4 py-1 text-xs font-medium text-violet-700">
           Simple. Automatic. Magical.
         </span>
         <h2 className="mt-4 text-3xl font-bold md:text-4xl">How Biltro works</h2>
@@ -37,7 +37,7 @@ export default function HowItWorks() {
             className="text-center"
           >
             <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-2xl shadow-md">
-              <span className="absolute -top-2 -left-2 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white">
+              <span className="absolute -top-2 -left-2 flex h-6 w-6 items-center justify-center rounded-full bg-violet-600 text-xs font-bold text-white">
                 {i + 1}
               </span>
               {step.icon}

@@ -7,10 +7,12 @@ import CTA from "@/components/landing/CTA";
 import Testimonials from "@/components/landing/Testimonials";
 import FAQ from "@/components/landing/FAQ";
 import Footer from "@/components/landing/Footer";
+import AnimatedBackground from "@/components/ui/AnimatedBackground";
 
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
+      <AnimatedBackground intensity={0.55} />
       <Navbar />
       <Hero />
       <BrandStrip />

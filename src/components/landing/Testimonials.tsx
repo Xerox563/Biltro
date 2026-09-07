@@ -17,7 +17,7 @@ export default function Testimonials() {
         viewport={{ once: true }}
         className="mb-14 text-center"
       >
-        <span className="rounded-full bg-indigo-100 px-4 py-1 text-xs font-medium text-indigo-700">
+        <span className="rounded-full bg-violet-100 px-4 py-1 text-xs font-medium text-violet-700">
           Loved by users
         </span>
         <h2 className="mt-4 text-3xl font-bold md:text-4xl">Real people. Real peace of mind.</h2>

@@ -55,7 +55,7 @@ export default function LoginPage() {
         className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-xl"
       >
         <div className="mb-6 flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-purple-500 text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-500 text-white">
             🔒
           </span>
           <div className="leading-tight">
@@ -74,7 +74,7 @@ export default function LoginPage() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:border-indigo-500"
+            className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:border-violet-500"
           />
           <input
             type="password"
@@ -82,7 +82,7 @@ export default function LoginPage() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:border-indigo-500"
+            className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:border-violet-500"
           />
 
           {error && <p className="text-sm text-red-600">{error}</p>}
@@ -106,7 +106,7 @@ export default function LoginPage() {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-gradient-to-r from-indigo-600 to-purple-500 py-3 text-sm font-semibold text-white shadow-lg disabled:opacity-60"
+            className="w-full rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 py-3 text-sm font-semibold text-white shadow-lg disabled:opacity-60"
           >
             {loading ? "Signing in..." : "Sign in"}
           </motion.button>
@@ -114,7 +114,7 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-sm text-black/60">
           New to Biltro?{" "}
-          <Link href="/signup" className="font-medium text-indigo-600">
+          <Link href="/signup" className="font-medium text-violet-600">
             Create an account
           </Link>
         </p>

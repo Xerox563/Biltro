@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Item, formatTimeLeft, getWarrantyStatus } from "@/lib/items";
+import { Item, formatTimeLeft, getDaysLeft, getWarrantyStatus } from "@/lib/items";
 
 const statusStyles: Record<string, string> = {
-  active: "bg-emerald-100 text-emerald-700",
-  expiring: "bg-orange-100 text-orange-700",
-  expired: "bg-red-100 text-red-700",
+  active: "bg-emerald-100/80 text-emerald-700",
+  expiring: "bg-amber-100/80 text-amber-700",
+  expired: "bg-rose-100/80 text-rose-700",
 };
 
 const statusLabel: Record<string, string> = {
@@ -16,36 +16,58 @@ const statusLabel: Record<string, string> = {
   expired: "Expired",
 };
 
+const barColor: Record<string, string> = {
+  active: "from-emerald-400 to-teal-500",
+  expiring: "from-amber-400 to-orange-500",
+  expired: "from-rose-400 to-rose-500",
+};
+
 export default function ProductCard({ item, index }: { item: Item; index: number }) {
   const status = getWarrantyStatus(item.expiry_date);
+  const total = item.warranty_months * 30;
+  const left = Math.max(0, getDaysLeft(item.expiry_date));
+  const percentLeft = Math.min(100, Math.max(0, (left / total) * 100));
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.06 }}
-      whileHover={{ y: -4 }}
-      className="rounded-2xl bg-white p-5 shadow-sm"
+      transition={{ delay: index * 0.06, type: "spring", stiffness: 210, damping: 24 }}
+      whileHover={{ y: -6 }}
+      className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-5 shadow-[0_8px_30px_-14px_rgba(76,29,149,0.2)] backdrop-blur-xl"
     >
+      <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-violet-400/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
       <div className="flex items-start justify-between">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-xl">
+        <motion.div
+          whileHover={{ rotate: -6, scale: 1.06 }}
+          className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-fuchsia-100 text-xl"
+        >
           📦
-        </div>
-        <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${statusStyles[status]}`}>
+        </motion.div>
+        <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${statusStyles[status]}`}>
           {statusLabel[status]}
         </span>
       </div>
 
-      <h3 className="mt-4 font-semibold">{item.product_name}</h3>
-      {item.shop_name && <p className="text-xs text-black/50">{item.shop_name}</p>}
+      <h3 className="mt-4 line-clamp-1 font-semibold text-ink">{item.product_name}</h3>
+      {item.shop_name && <p className="line-clamp-1 text-xs text-ink-soft">{item.shop_name}</p>}
 
-      <p className="mt-3 flex items-center gap-1.5 text-xs text-black/60">
-        📅 {formatTimeLeft(item.expiry_date)}
-      </p>
+      <div className="mt-4">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-black/5">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${percentLeft}%` }}
+            transition={{ duration: 1, delay: 0.2 + index * 0.06, ease: "easeOut" }}
+            className={`h-full rounded-full bg-gradient-to-r ${barColor[status]}`}
+          />
+        </div>
+        <p className="mt-2 text-xs text-ink-soft">{formatTimeLeft(item.expiry_date)}</p>
+      </div>
 
       <Link
         href={`/all-products/${item.id}`}
-        className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-indigo-600"
+        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-violet-600 transition-all group-hover:gap-2"
       >
         View Details →
       </Link>

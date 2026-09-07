@@ -19,7 +19,7 @@ export default async function AddNewPage() {
         </p>
         <Link
           href="/all-products"
-          className="mt-6 inline-block rounded-full bg-gradient-to-r from-indigo-600 to-purple-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg"
+          className="mt-6 inline-block rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg"
         >
           Manage my items
         </Link>

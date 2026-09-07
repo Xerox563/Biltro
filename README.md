@@ -16,6 +16,9 @@ Snap a photo of the bill (or forward the e-receipt). AI reads it and automatical
 - [x] Build the dashboard (list of all items with expiry status)
 - [x] Build the single item detail page
 - [x] Set up daily reminder emails for expiring warranties
-- [x] Add free plan limit and basic settings page
+- [x] Add free plan limit, show account and plan info in the sidebar
 - [x] Connect real Supabase project and AI key, confirm signup and bill reading actually work
+- [x] Make some test bills to upload while building
+- [x] Redesign the whole UI with a new colour theme, moving gradient backgrounds and proper animations
 - [ ] Upload a bunch of real, messy bills (handwritten, printed, e-receipts) and fix AI mistakes
+- [ ] Deploy to Vercel and set the env keys there
