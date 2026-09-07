@@ -10,6 +10,7 @@ const links = [
   { label: "Add New", href: "/add-new", icon: "➕" },
   { label: "All Products", href: "/all-products", icon: "📦" },
   { label: "Reminders", href: "/reminders", icon: "🔔" },
+  { label: "Settings", href: "/settings", icon: "⚙️" },
 ];
 
 export default function Sidebar() {
