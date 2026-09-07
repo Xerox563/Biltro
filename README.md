@@ -9,12 +9,12 @@ Snap a photo of the bill (or forward the e-receipt). AI reads it and automatical
 ## Todo
 - [x] Set up the Next.js project with Tailwind and Framer Motion
 - [x] Build the landing page
-- [ ] Set up Supabase (database, auth, file storage)
-- [ ] Build login and signup
-- [ ] Build the add bill page (upload photo)
-- [ ] Connect AI to read the bill and pull out the details
-- [ ] Build the dashboard (list of all items with expiry status)
-- [ ] Build the single item detail page
-- [ ] Set up daily reminder emails for expiring warranties
+- [x] Set up Supabase (database, auth, file storage)
+- [x] Build login and signup
+- [x] Build the add bill page (upload photo)
+- [x] Connect AI to read the bill and pull out the details
+- [x] Build the dashboard (list of all items with expiry status)
+- [x] Build the single item detail page
+- [x] Set up daily reminder emails for expiring warranties
 - [ ] Test with real bills and fix AI mistakes
 - [ ] Add free plan limit and basic settings page
