@@ -35,6 +35,7 @@ export default async function DashboardPage() {
           label="Total Products"
           gradient="from-violet-500 to-indigo-500"
           glow="bg-violet-400/40"
+          ring="glow-violet"
         />
         <StatCard
           index={1}
@@ -43,6 +44,7 @@ export default async function DashboardPage() {
           label="Expiring Soon"
           gradient="from-amber-400 to-orange-500"
           glow="bg-amber-400/40"
+          ring="glow-amber"
         />
         <StatCard
           index={2}
@@ -51,6 +53,7 @@ export default async function DashboardPage() {
           label="Active Warranties"
           gradient="from-emerald-400 to-teal-500"
           glow="bg-emerald-400/40"
+          ring="glow-emerald"
         />
         <StatCard
           index={3}
@@ -59,6 +62,7 @@ export default async function DashboardPage() {
           label="Expired"
           gradient="from-rose-400 to-pink-500"
           glow="bg-rose-400/40"
+          ring="glow-rose"
         />
       </div>
 

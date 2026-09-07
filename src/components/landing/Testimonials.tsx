@@ -31,11 +31,12 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="rounded-2xl bg-white p-6 shadow-sm"
+            whileHover={{ y: -5 }}
+            className={`edge-sheen relative overflow-hidden rounded-2xl bg-white/80 p-6 backdrop-blur transition-shadow duration-500 ${["glow-violet", "glow-cyan", "glow-fuchsia"][i % 3]}`}
           >
-            <p className="text-sm text-black/70">&ldquo;{t.quote}&rdquo;</p>
-            <p className="mt-4 text-sm font-semibold">{t.name}</p>
-            <p className="text-xs text-black/40">Verified User</p>
+            <p className="text-sm leading-relaxed text-ink/80">&ldquo;{t.quote}&rdquo;</p>
+            <p className="mt-4 text-sm font-semibold text-ink">{t.name}</p>
+            <p className="text-xs text-ink-soft">Verified User</p>
           </motion.div>
         ))}
       </div>

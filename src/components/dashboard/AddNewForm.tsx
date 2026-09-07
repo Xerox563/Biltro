@@ -159,7 +159,7 @@ export default function AddNewForm() {
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-3xl border border-white/60 bg-white/70 p-8 shadow-[0_10px_40px_-16px_rgba(76,29,149,0.25)] backdrop-blur-xl"
+        className="glow-violet rounded-3xl bg-white/70 p-8 backdrop-blur-xl"
       >
         <motion.p
           initial={{ opacity: 0, y: -6 }}

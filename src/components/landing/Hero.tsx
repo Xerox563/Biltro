@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import DemoModal from "@/components/landing/DemoModal";
 
 const items = [
   { name: "LG AC", meta: "2 Year Warranty · 8 months left", warn: false },
@@ -12,8 +14,11 @@ const items = [
 ];
 
 export default function Hero() {
+  const [demoOpen, setDemoOpen] = useState(false);
+
   return (
     <section className="relative overflow-hidden px-6 pt-20 pb-28">
+      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
       <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -59,11 +64,19 @@ export default function Hero() {
               </Link>
             </motion.div>
             <motion.button
+              onClick={() => setDemoOpen(true)}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 rounded-full border border-white/70 bg-white/70 px-6 py-4 text-sm font-semibold text-ink backdrop-blur"
+              className="glow-hover flex items-center gap-2.5 rounded-full border border-white/70 bg-white/70 px-6 py-4 text-sm font-semibold text-ink backdrop-blur"
             >
-              ▶ Watch 1 min video
+              <motion.span
+                animate={{ scale: [1, 1.12, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-fuchsia-500 text-[10px] text-white"
+              >
+                ▶
+              </motion.span>
+              Watch how it works
             </motion.button>
           </div>
 

@@ -22,6 +22,12 @@ const barColor: Record<string, string> = {
   expired: "from-rose-400 to-rose-500",
 };
 
+const glowByStatus: Record<string, string> = {
+  active: "glow-emerald",
+  expiring: "glow-amber",
+  expired: "glow-rose",
+};
+
 export default function ProductCard({ item, index }: { item: Item; index: number }) {
   const status = getWarrantyStatus(item.expiry_date);
   const total = item.warranty_months * 30;
@@ -34,9 +40,8 @@ export default function ProductCard({ item, index }: { item: Item; index: number
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06, type: "spring", stiffness: 210, damping: 24 }}
       whileHover={{ y: -6 }}
-      className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-5 shadow-[0_8px_30px_-14px_rgba(76,29,149,0.2)] backdrop-blur-xl"
+      className={`group edge-sheen relative overflow-hidden rounded-3xl bg-white/70 p-5 backdrop-blur-xl transition-shadow duration-500 ${glowByStatus[status]}`}
     >
-      <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-violet-400/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
       <div className="flex items-start justify-between">
         <motion.div

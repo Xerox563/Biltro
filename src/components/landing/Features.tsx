@@ -11,6 +11,8 @@ const features = [
   { icon: "📦", title: "Works for everything", desc: "Phones, laptops, home appliances, watches, and more." },
 ];
 
+const glows = ["glow-violet", "glow-fuchsia", "glow-cyan", "glow-emerald", "glow-amber", "glow-rose"];
+
 export default function Features() {
   return (
     <section id="features" className="mx-auto max-w-6xl px-6 py-24">
@@ -34,15 +36,15 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            whileHover={{ scale: 1.02 }}
-            className="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm"
+            whileHover={{ scale: 1.02, y: -4 }}
+            className={`edge-sheen relative flex items-start gap-4 overflow-hidden rounded-2xl bg-white/80 p-5 backdrop-blur transition-shadow duration-500 ${glows[i % glows.length]}`}
           >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-xl">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-50 to-fuchsia-50 text-xl">
               {f.icon}
             </span>
             <div>
-              <h3 className="font-semibold">{f.title}</h3>
-              <p className="mt-1 text-sm text-black/60">{f.desc}</p>
+              <h3 className="font-semibold text-ink">{f.title}</h3>
+              <p className="mt-1 text-sm text-ink-soft">{f.desc}</p>
             </div>
           </motion.div>
         ))}

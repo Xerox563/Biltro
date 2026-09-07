@@ -11,7 +11,7 @@ const steps = [
 
 export default function UploadStepper({ current, busy }: { current: number; busy: boolean }) {
   return (
-    <div className="h-fit rounded-3xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_30px_-14px_rgba(76,29,149,0.2)] backdrop-blur-xl">
+    <div className="glow-cyan h-fit rounded-3xl bg-white/70 p-6 backdrop-blur-xl">
       <h2 className="font-bold text-ink">How it works</h2>
       <p className="mt-1 text-xs text-ink-soft">We&apos;ll walk through it together.</p>
 

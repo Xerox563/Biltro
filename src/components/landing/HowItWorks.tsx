@@ -36,14 +36,18 @@ export default function HowItWorks() {
             whileHover={{ y: -6 }}
             className="text-center"
           >
-            <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-2xl shadow-md">
-              <span className="absolute -top-2 -left-2 flex h-6 w-6 items-center justify-center rounded-full bg-violet-600 text-xs font-bold text-white">
+            <div
+              className={`relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/85 text-2xl backdrop-blur transition-shadow duration-500 ${
+                ["glow-violet", "glow-fuchsia", "glow-cyan", "glow-emerald"][i % 4]
+              }`}
+            >
+              <span className="absolute -top-2 -left-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-fuchsia-500 text-xs font-bold text-white shadow-lg">
                 {i + 1}
               </span>
               {step.icon}
             </div>
-            <h3 className="mt-4 font-semibold">{step.title}</h3>
-            <p className="mt-2 text-sm text-black/60">{step.desc}</p>
+            <h3 className="mt-4 font-semibold text-ink">{step.title}</h3>
+            <p className="mt-2 text-sm text-ink-soft">{step.desc}</p>
           </motion.div>
         ))}
       </div>

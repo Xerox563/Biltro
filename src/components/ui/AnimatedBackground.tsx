@@ -35,8 +35,25 @@ export default function AnimatedBackground({ intensity = 0.5 }: { intensity?: nu
         />
       ))}
 
+      {/* soft light bleeding in from both edges */}
+      <motion.div
+        animate={{ opacity: [0.45, 0.8, 0.45] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-y-0 left-0 w-56 bg-[linear-gradient(to_right,rgba(139,92,246,0.28),transparent)] blur-2xl"
+      />
+      <motion.div
+        animate={{ opacity: [0.8, 0.45, 0.8] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-y-0 right-0 w-56 bg-[linear-gradient(to_left,rgba(217,70,239,0.26),transparent)] blur-2xl"
+      />
+      <motion.div
+        animate={{ opacity: [0.35, 0.7, 0.35] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(to_top,rgba(6,182,212,0.22),transparent)] blur-2xl"
+      />
+
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(124,58,237,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(124,58,237,0.045)_1px,transparent_1px)] bg-[size:56px_56px]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/55" />
     </div>
   );
 }

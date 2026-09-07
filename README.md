@@ -20,5 +20,6 @@ Snap a photo of the bill (or forward the e-receipt). AI reads it and automatical
 - [x] Connect real Supabase project and AI key, confirm signup and bill reading actually work
 - [x] Make some test bills to upload while building
 - [x] Redesign the whole UI with a new colour theme, moving gradient backgrounds and proper animations
+- [x] Add glowing borders on the cards and a walkthrough that plays when you click watch how it works
 - [ ] Upload a bunch of real, messy bills (handwritten, printed, e-receipts) and fix AI mistakes
 - [ ] Deploy to Vercel and set the env keys there
