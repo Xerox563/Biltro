@@ -13,10 +13,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [needsConfirmation, setNeedsConfirmation] = useState(false);
+  const [resent, setResent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    setNeedsConfirmation(false);
+    setResent(false);
     setLoading(true);
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -24,12 +28,22 @@ export default function LoginPage() {
     setLoading(false);
 
     if (error) {
-      setError(error.message);
+      if (error.message.toLowerCase().includes("email not confirmed")) {
+        setNeedsConfirmation(true);
+      } else {
+        setError(error.message);
+      }
       return;
     }
 
     router.push("/dashboard");
     router.refresh();
+  }
+
+  async function handleResend() {
+    setResent(false);
+    await supabase.auth.resend({ type: "signup", email });
+    setResent(true);
   }
 
   return (
@@ -72,6 +86,20 @@ export default function LoginPage() {
           />
 
           {error && <p className="text-sm text-red-600">{error}</p>}
+
+          {needsConfirmation && (
+            <div className="rounded-xl bg-orange-50 p-3 text-sm text-orange-700">
+              <p>Please confirm your email before signing in, check your inbox for the link.</p>
+              <button
+                type="button"
+                onClick={handleResend}
+                className="mt-2 font-medium underline underline-offset-2"
+              >
+                Resend confirmation email
+              </button>
+              {resent && <p className="mt-1 text-xs">Sent! Check your inbox.</p>}
+            </div>
+          )}
 
           <motion.button
             whileHover={{ scale: 1.02 }}
