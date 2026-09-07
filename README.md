@@ -17,4 +17,5 @@ Snap a photo of the bill (or forward the e-receipt). AI reads it and automatical
 - [x] Build the single item detail page
 - [x] Set up daily reminder emails for expiring warranties
 - [x] Add free plan limit and basic settings page
-- [ ] Test with real bills and fix AI mistakes (needs a real Supabase project and OpenAI key first, still on placeholder keys)
+- [x] Connect real Supabase project and AI key, confirm signup and bill reading actually work
+- [ ] Upload a bunch of real, messy bills (handwritten, printed, e-receipts) and fix AI mistakes

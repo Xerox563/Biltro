@@ -5,6 +5,8 @@ node_modules/
 .next/
 out/
 build/
+AGENTS.md
+CLAUDE.md
 
 # env
 .env
