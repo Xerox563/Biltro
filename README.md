@@ -8,7 +8,7 @@ Snap a photo of the bill (or forward the e-receipt). AI reads it and automatical
 
 ## Todo
 - [x] Set up the Next.js project with Tailwind and Framer Motion
-- [ ] Build the landing page
+- [x] Build the landing page
 - [ ] Set up Supabase (database, auth, file storage)
 - [ ] Build login and signup
 - [ ] Build the add bill page (upload photo)

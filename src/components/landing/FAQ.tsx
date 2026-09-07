@@ -1,0 +1,64 @@
+"use client";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+const faqs = [
+  { q: "Is my data safe?", a: "Yes. Your bills and personal data are stored securely and are only visible to you." },
+  { q: "Can you read bills from any store?", a: "Yes, our AI works with most bill formats — printed, handwritten and e-receipts." },
+  { q: "What happens when a warranty expires?", a: "We mark it as expired on your dashboard and stop sending reminders for it." },
+  { q: "Can I add bills for my family members?", a: "Yes, family sharing lets everyone's warranties live in one shared vault." },
+  { q: "Is there a mobile app?", a: "Biltro works great on mobile browsers today, a native app is on the roadmap." },
+];
+
+export default function FAQ() {
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <section id="faqs" className="mx-auto max-w-4xl px-6 py-24">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-10 text-center"
+      >
+        <span className="rounded-full bg-indigo-100 px-4 py-1 text-xs font-medium text-indigo-700">FAQs</span>
+        <h2 className="mt-4 text-3xl font-bold md:text-4xl">Still have questions?</h2>
+      </motion.div>
+
+      <div className="space-y-3">
+        {faqs.map((faq, i) => (
+          <motion.div
+            key={faq.q}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.06 }}
+            className="overflow-hidden rounded-2xl bg-white shadow-sm"
+          >
+            <button
+              onClick={() => setOpen(open === i ? null : i)}
+              className="flex w-full items-center justify-between px-5 py-4 text-left text-sm font-medium"
+            >
+              {faq.q}
+              <motion.span animate={{ rotate: open === i ? 180 : 0 }}>⌄</motion.span>
+            </button>
+            <AnimatePresence initial={false}>
+              {open === i && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="px-5 text-sm text-black/60"
+                >
+                  <p className="pb-4">{faq.a}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
