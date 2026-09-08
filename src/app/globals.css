@@ -48,6 +48,7 @@
   --color-field-border: var(--field-border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument);
 }
 
 body {

@@ -1,6 +1,7 @@
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
 import BrandStrip from "@/components/landing/BrandStrip";
+import ProblemSolution from "@/components/landing/ProblemSolution";
 import HowItWorks from "@/components/landing/HowItWorks";
 import Features from "@/components/landing/Features";
 import CTA from "@/components/landing/CTA";
@@ -18,6 +19,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <BrandStrip />
+      <ProblemSolution />
       <HowItWorks />
       <Features />
       <CTA />
