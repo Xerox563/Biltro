@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import GlowGrid from "@/components/ui/GlowGrid";
 
 const orbs = [
   {
@@ -23,7 +24,7 @@ const orbs = [
 export default function AnimatedBackground({ intensity = 0.5 }: { intensity?: number }) {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#f8f7fd]" />
+      <div className="absolute inset-0" style={{ background: "var(--background)" }} />
 
       {orbs.map((orb, i) => (
         <motion.div
@@ -52,8 +53,15 @@ export default function AnimatedBackground({ intensity = 0.5 }: { intensity?: nu
         className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(to_top,rgba(6,182,212,0.22),transparent)] blur-2xl"
       />
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(124,58,237,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(124,58,237,0.045)_1px,transparent_1px)] bg-[size:56px_56px]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/55" />
+      <GlowGrid intensity={intensity} />
+
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, var(--veil-top), transparent, var(--veil-bottom))",
+        }}
+      />
     </div>
   );
 }

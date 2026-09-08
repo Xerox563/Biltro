@@ -11,12 +11,12 @@ const steps = [
 
 export default function UploadStepper({ current, busy }: { current: number; busy: boolean }) {
   return (
-    <div className="glow-cyan h-fit rounded-3xl bg-white/70 p-6 backdrop-blur-xl">
+    <div className="glow-cyan h-fit rounded-3xl bg-surface p-5 backdrop-blur-xl sm:p-6">
       <h2 className="font-bold text-ink">How it works</h2>
       <p className="mt-1 text-xs text-ink-soft">We&apos;ll walk through it together.</p>
 
       <div className="relative mt-6">
-        <div className="absolute left-[19px] top-2 h-[calc(100%-1rem)] w-0.5 rounded-full bg-black/5" />
+        <div className="absolute left-[19px] top-2 h-[calc(100%-1rem)] w-0.5 rounded-full bg-surface-muted" />
         <motion.div
           animate={{ height: `${(current / (steps.length - 1)) * 100}%` }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -47,7 +47,7 @@ export default function UploadStepper({ current, busy }: { current: number; busy
                         ? "bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-lg shadow-emerald-500/25"
                         : active
                           ? "bg-gradient-to-br from-violet-600 to-fuchsia-500 text-white shadow-lg shadow-violet-500/30"
-                          : "bg-black/5 text-ink-soft"
+                          : "bg-surface-muted text-ink-soft"
                     }`}
                   >
                     {done ? (
@@ -63,7 +63,7 @@ export default function UploadStepper({ current, busy }: { current: number; busy
                 <div className="pt-0.5">
                   <p
                     className={`text-sm font-semibold transition-colors ${
-                      active ? "text-violet-700" : done ? "text-ink" : "text-ink-soft"
+                      active ? "text-violet-700 dark:text-violet-300" : done ? "text-ink" : "text-ink-soft"
                     }`}
                   >
                     {step.title}

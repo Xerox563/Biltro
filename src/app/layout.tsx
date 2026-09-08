@@ -17,12 +17,28 @@ export const metadata: Metadata = {
   description: "Snap a bill. Biltro reads it, stores it, and reminds you before your warranty expires.",
 };
 
+/* runs before first paint so a dark visitor never sees a white flash */
+const themeScript = `
+(function () {
+  try {
+    var saved = localStorage.getItem("biltro-theme");
+    var dark = saved ? saved === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.classList.add("dark");
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

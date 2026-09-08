@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { createClient } from "@/lib/supabase/client";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const links = [
   { label: "Home", href: "/dashboard", icon: "🏠" },
@@ -37,7 +38,7 @@ export default function Sidebar({
       initial={{ x: -24, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="sticky top-0 flex h-screen w-64 shrink-0 flex-col border-r border-white/60 bg-white/70 p-5 backdrop-blur-xl"
+      className="sticky top-0 flex h-screen w-64 shrink-0 flex-col border-r border-line bg-surface p-5 backdrop-blur-xl"
     >
       <motion.div
         initial={{ opacity: 0, y: -8 }}
@@ -70,14 +71,14 @@ export default function Sidebar({
                 {active && (
                   <motion.span
                     layoutId="sidebar-active"
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-100 to-fuchsia-50 shadow-sm"
+                    className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-100 to-fuchsia-50 shadow-sm dark:from-violet-500/25 dark:to-fuchsia-500/12"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 <motion.span
                   whileHover={{ x: 4 }}
                   className={`relative flex items-center gap-3 rounded-2xl px-4 py-2.5 text-sm font-semibold transition-colors ${
-                    active ? "text-violet-700" : "text-ink-soft hover:text-ink"
+                    active ? "text-violet-700 dark:text-violet-300" : "text-ink-soft hover:text-ink"
                   }`}
                 >
                   <span>{link.icon}</span>
@@ -100,7 +101,7 @@ export default function Sidebar({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
         whileHover={{ scale: 1.015 }}
-        className="mb-3 rounded-2xl border border-white/70 bg-gradient-to-br from-violet-50 to-fuchsia-50/60 p-4"
+        className="mb-3 rounded-2xl border border-line bg-gradient-to-br from-violet-50 to-fuchsia-50/60 dark:from-violet-500/14 dark:to-fuchsia-500/8 p-4"
       >
         <p className="truncate text-xs font-semibold text-ink">{email}</p>
         <div className="mt-3 flex items-center justify-between text-[11px] font-medium text-ink-soft">
@@ -109,7 +110,7 @@ export default function Sidebar({
             {itemsUsed}/{itemsLimit} items
           </span>
         </div>
-        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/80">
+        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${percent}%` }}
@@ -119,14 +120,17 @@ export default function Sidebar({
         </div>
       </motion.div>
 
-      <motion.button
-        whileHover={{ scale: 1.02, x: 2 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={handleLogout}
-        className="rounded-2xl px-4 py-2.5 text-left text-sm font-semibold text-ink-soft transition-colors hover:text-ink"
-      >
-        ⎋ Log out
-      </motion.button>
+      <div className="flex items-center justify-between gap-2">
+        <motion.button
+          whileHover={{ scale: 1.02, x: 2 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={handleLogout}
+          className="rounded-2xl px-3 py-2.5 text-left text-sm font-semibold text-ink-soft transition-colors hover:text-ink"
+        >
+          ⎋ Log out
+        </motion.button>
+        <ThemeToggle />
+      </div>
     </motion.aside>
   );
 }

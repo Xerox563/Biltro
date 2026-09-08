@@ -155,11 +155,11 @@ export default function AddNewForm() {
   }
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1fr_330px]">
+    <div className="mx-auto grid max-w-6xl gap-5 sm:gap-6 lg:grid-cols-[1fr_330px]">
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glow-violet rounded-3xl bg-white/70 p-8 backdrop-blur-xl"
+        className="glow-violet rounded-3xl bg-surface p-5 backdrop-blur-xl sm:p-8"
       >
         <motion.p
           initial={{ opacity: 0, y: -6 }}
@@ -168,7 +168,7 @@ export default function AddNewForm() {
         >
           Add to vault
         </motion.p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">
+        <h1 className="mt-2 text-2xl font-bold tracking-tight text-ink sm:text-3xl">
           Let&apos;s add your <span className="text-gradient">warranty</span>
         </h1>
         <p className="mt-1 text-sm text-ink-soft">Upload a bill and let AI take care of the rest.</p>
@@ -195,7 +195,7 @@ export default function AddNewForm() {
               className={`relative mt-8 cursor-pointer overflow-hidden rounded-3xl border-2 border-dashed p-14 text-center transition-colors ${
                 dragging
                   ? "border-fuchsia-400 bg-fuchsia-50/60"
-                  : "border-violet-200 bg-gradient-to-b from-violet-50/60 to-fuchsia-50/30"
+                  : "border-violet-200 dark:border-violet-500/35 bg-gradient-to-b from-violet-50/60 to-fuchsia-50/30"
               }`}
             >
               <motion.div
@@ -234,7 +234,7 @@ export default function AddNewForm() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="mt-8 flex flex-col items-center gap-5 rounded-3xl bg-gradient-to-b from-violet-50/70 to-white/40 p-12 text-center"
+              className="mt-8 flex flex-col items-center gap-5 rounded-3xl bg-gradient-to-b from-violet-50/70 to-white/40 dark:from-violet-500/10 dark:to-transparent p-12 text-center"
             >
               {preview && (
                 <motion.img
@@ -247,7 +247,7 @@ export default function AddNewForm() {
                 />
               )}
               <p className="font-semibold text-ink">Uploading your bill...</p>
-              <div className="h-2 w-full max-w-xs overflow-hidden rounded-full bg-white shadow-inner">
+              <div className="h-2 w-full max-w-xs overflow-hidden rounded-full bg-surface-muted shadow-inner">
                 <motion.div
                   animate={{ width: `${progress}%` }}
                   transition={{ ease: "easeOut", duration: 0.3 }}
@@ -264,7 +264,7 @@ export default function AddNewForm() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="mt-8 flex flex-col items-center gap-5 rounded-3xl bg-gradient-to-b from-violet-50/70 to-white/40 p-12 text-center"
+              className="mt-8 flex flex-col items-center gap-5 rounded-3xl bg-gradient-to-b from-violet-50/70 to-white/40 dark:from-violet-500/10 dark:to-transparent p-12 text-center"
             >
               {preview && (
                 <div className="relative h-48 w-full max-w-xs overflow-hidden rounded-2xl bg-white shadow-xl">
@@ -309,7 +309,7 @@ export default function AddNewForm() {
                     key={chip}
                     animate={{ opacity: [0.35, 1, 0.35], y: [0, -3, 0] }}
                     transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.25 }}
-                    className="rounded-full bg-white px-3 py-1 text-xs font-medium text-violet-600 shadow-sm"
+                    className="rounded-full bg-surface-solid px-3 py-1 text-xs font-medium text-violet-600 shadow-sm"
                   >
                     {chip}
                   </motion.span>
@@ -347,7 +347,7 @@ export default function AddNewForm() {
                   </p>
                   <button
                     onClick={reset}
-                    className="mt-3 text-xs font-semibold text-violet-600 hover:text-violet-700"
+                    className="mt-3 text-xs font-semibold text-violet-600 hover:text-violet-700 dark:text-violet-300"
                   >
                     ← Upload a different bill
                   </button>
@@ -355,7 +355,7 @@ export default function AddNewForm() {
               </div>
 
               {error && (
-                <div className="rounded-2xl bg-amber-50 p-3 text-sm text-amber-700">{error}</div>
+                <div className="rounded-2xl bg-amber-50 p-3 text-sm text-amber-700 dark:bg-amber-500/15 dark:text-amber-300">{error}</div>
               )}
 
               {[
@@ -372,7 +372,7 @@ export default function AddNewForm() {
                   <input
                     value={form[field.key as keyof Extracted] as string}
                     onChange={(e) => setForm({ ...form, [field.key]: e.target.value })}
-                    className="mt-1.5 w-full rounded-2xl border border-black/10 bg-white/80 px-4 py-3 text-sm outline-none transition-all focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                    className="mt-1.5 w-full rounded-2xl border border-field-border bg-surface px-4 py-3 text-sm outline-none transition-all focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
                   />
                 </motion.div>
               ))}
@@ -389,7 +389,7 @@ export default function AddNewForm() {
                     type="date"
                     value={form.purchase_date}
                     onChange={(e) => setForm({ ...form, purchase_date: e.target.value })}
-                    className="mt-1.5 w-full rounded-2xl border border-black/10 bg-white/80 px-4 py-3 text-sm outline-none transition-all focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                    className="mt-1.5 w-full rounded-2xl border border-field-border bg-surface px-4 py-3 text-sm outline-none transition-all focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
                   />
                 </div>
                 <div>
@@ -399,7 +399,7 @@ export default function AddNewForm() {
                     min={1}
                     value={form.warranty_months}
                     onChange={(e) => setForm({ ...form, warranty_months: Number(e.target.value) })}
-                    className="mt-1.5 w-full rounded-2xl border border-black/10 bg-white/80 px-4 py-3 text-sm outline-none transition-all focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                    className="mt-1.5 w-full rounded-2xl border border-field-border bg-surface px-4 py-3 text-sm outline-none transition-all focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
                   />
                 </div>
               </motion.div>
@@ -428,7 +428,7 @@ export default function AddNewForm() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="mt-8 flex flex-col items-center gap-5 rounded-3xl bg-gradient-to-b from-violet-50/70 to-white/40 p-16 text-center"
+              className="mt-8 flex flex-col items-center gap-5 rounded-3xl bg-gradient-to-b from-violet-50/70 to-white/40 dark:from-violet-500/10 dark:to-transparent p-16 text-center"
             >
               <motion.span
                 animate={{ rotate: 360 }}
@@ -445,7 +445,7 @@ export default function AddNewForm() {
               key="done"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-8 flex flex-col items-center gap-4 rounded-3xl bg-gradient-to-b from-emerald-50 to-white/40 p-16 text-center"
+              className="mt-8 flex flex-col items-center gap-4 rounded-3xl bg-gradient-to-b from-emerald-50 to-white/40 dark:from-emerald-500/12 dark:to-transparent p-16 text-center"
             >
               <motion.span
                 initial={{ scale: 0, rotate: -30 }}
@@ -459,7 +459,7 @@ export default function AddNewForm() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
-                className="text-lg font-bold text-emerald-700"
+                className="text-lg font-bold text-emerald-700 dark:text-emerald-300"
               >
                 Saved to your vault!
               </motion.p>

@@ -27,7 +27,7 @@ export default async function DashboardPage() {
     <div className="mx-auto max-w-6xl">
       <DashboardHeader name={name} />
 
-      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-4">
         <StatCard
           index={0}
           icon="📦"

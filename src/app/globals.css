@@ -1,15 +1,51 @@
 @import "tailwindcss";
 
+/* dark mode follows a class on <html>, not the OS setting, so the toggle wins */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #f8f7fd;
   --foreground: #1a1033;
+  --ink: #1a1033;
+  --ink-soft: #574a75;
+  --surface: rgba(255, 255, 255, 0.7);
+  --surface-solid: #ffffff;
+  --surface-muted: rgba(0, 0, 0, 0.05);
+  --line: rgba(255, 255, 255, 0.6);
+  --grid-line: rgba(124, 58, 237, 0.03);
+  --veil-top: rgba(255, 255, 255, 0.4);
+  --veil-bottom: rgba(255, 255, 255, 0.55);
+  --field: rgba(255, 255, 255, 0.8);
+  --field-border: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --background: #0c0720;
+  --foreground: #ece8f8;
+  --ink: #f1edfb;
+  --ink-soft: #a89cc8;
+  --surface: rgba(32, 22, 60, 0.62);
+  --surface-solid: #191033;
+  --surface-muted: rgba(255, 255, 255, 0.07);
+  --line: rgba(255, 255, 255, 0.1);
+  --grid-line: rgba(167, 139, 250, 0.05);
+  --veil-top: rgba(12, 7, 32, 0.35);
+  --veil-bottom: rgba(12, 7, 32, 0.6);
+  --field: rgba(255, 255, 255, 0.06);
+  --field-border: rgba(255, 255, 255, 0.14);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-ink: #1a1033;
-  --color-ink-soft: #574a75;
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-surface: var(--surface);
+  --color-surface-solid: var(--surface-solid);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-field: var(--field);
+  --color-field-border: var(--field-border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -17,16 +53,17 @@
 body {
   background: var(--background);
   color: var(--foreground);
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .text-gradient {
   background: linear-gradient(100deg, #7c3aed, #c026d3 55%, #0891b2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dark .text-gradient {
+  background: linear-gradient(100deg, #a78bfa, #e879f9 55%, #22d3ee);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -73,14 +110,6 @@ body {
   box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.4), 0 18px 60px -12px rgba(139, 92, 246, 0.65);
 }
 
-/* people who ask for less motion get the glow, just not the pulsing */
-@media (prefers-reduced-motion: reduce) {
-  .glow-violet, .glow-fuchsia, .glow-cyan, .glow-emerald, .glow-amber, .glow-rose {
-    animation: none;
-    box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.2), 0 10px 40px -16px rgba(139, 92, 246, 0.45);
-  }
-}
-
 /* thin sweeping light along a card's top edge */
 .edge-sheen::before {
   content: "";
@@ -94,4 +123,12 @@ body {
 }
 .edge-sheen:hover::before {
   opacity: 1;
+}
+
+/* people who ask for less motion get the glow, just not the pulsing */
+@media (prefers-reduced-motion: reduce) {
+  .glow-violet, .glow-fuchsia, .glow-cyan, .glow-emerald, .glow-amber, .glow-rose {
+    animation: none;
+    box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.2), 0 10px 40px -16px rgba(139, 92, 246, 0.45);
+  }
 }

@@ -25,7 +25,7 @@ export default function ProductGrid({
           {heading}
         </motion.h2>
         {showViewAll && (
-          <Link href="/all-products" className="text-sm font-semibold text-violet-600 hover:text-violet-700">
+          <Link href="/all-products" className="text-sm font-semibold text-violet-600 hover:text-violet-700 dark:text-violet-300">
             View all →
           </Link>
         )}
@@ -35,7 +35,7 @@ export default function ProductGrid({
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-4 flex flex-col items-center gap-3 rounded-3xl border border-white/60 bg-white/70 p-14 text-center backdrop-blur-xl"
+          className="mt-4 flex flex-col items-center gap-3 rounded-3xl border border-line bg-surface p-14 text-center backdrop-blur-xl"
         >
           <motion.span
             animate={{ y: [0, -10, 0], rotate: [0, 4, -4, 0] }}

@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Item, formatTimeLeft, getDaysLeft, getWarrantyStatus } from "@/lib/items";
 
 const statusStyles: Record<string, string> = {
-  active: "bg-emerald-100/80 text-emerald-700",
-  expiring: "bg-amber-100/80 text-amber-700",
-  expired: "bg-rose-100/80 text-rose-700",
+  active: "bg-emerald-100/80 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300",
+  expiring: "bg-amber-100/80 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300",
+  expired: "bg-rose-100/80 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300",
 };
 
 const statusLabel: Record<string, string> = {
@@ -40,13 +40,13 @@ export default function ProductCard({ item, index }: { item: Item; index: number
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06, type: "spring", stiffness: 210, damping: 24 }}
       whileHover={{ y: -6 }}
-      className={`group edge-sheen relative overflow-hidden rounded-3xl bg-white/70 p-5 backdrop-blur-xl transition-shadow duration-500 ${glowByStatus[status]}`}
+      className={`group edge-sheen relative overflow-hidden rounded-3xl bg-surface p-5 backdrop-blur-xl transition-shadow duration-500 ${glowByStatus[status]}`}
     >
 
       <div className="flex items-start justify-between">
         <motion.div
           whileHover={{ rotate: -6, scale: 1.06 }}
-          className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-fuchsia-100 text-xl"
+          className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-fuchsia-100 dark:from-violet-500/25 dark:to-fuchsia-500/18 text-xl"
         >
           📦
         </motion.div>
@@ -59,7 +59,7 @@ export default function ProductCard({ item, index }: { item: Item; index: number
       {item.shop_name && <p className="line-clamp-1 text-xs text-ink-soft">{item.shop_name}</p>}
 
       <div className="mt-4">
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-black/5">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-muted">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${percentLeft}%` }}

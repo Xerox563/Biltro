@@ -28,7 +28,7 @@ export default function DashboardHeader({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="mt-2 text-3xl font-bold tracking-tight text-ink"
+          className="mt-2 text-2xl font-bold tracking-tight text-ink sm:text-3xl"
         >
           {title ?? (
             <>

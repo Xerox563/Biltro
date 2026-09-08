@@ -26,7 +26,7 @@ export default function StatCard({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: index * 0.08, type: "spring", stiffness: 220, damping: 22 }}
       whileHover={{ y: -6 }}
-      className={`group relative overflow-hidden rounded-3xl bg-white/70 p-5 backdrop-blur-xl transition-shadow duration-500 ${ring}`}
+      className={`group relative overflow-hidden rounded-3xl bg-surface p-5 backdrop-blur-xl transition-shadow duration-500 ${ring}`}
     >
       <motion.div
         aria-hidden

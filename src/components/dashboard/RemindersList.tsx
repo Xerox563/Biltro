@@ -18,7 +18,7 @@ export default function RemindersList({ items }: { items: Item[] }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.05 }}
-        className="mt-2 text-3xl font-bold tracking-tight text-ink"
+        className="mt-2 text-2xl font-bold tracking-tight text-ink sm:text-3xl"
       >
         Reminders
       </motion.h1>
@@ -28,7 +28,7 @@ export default function RemindersList({ items }: { items: Item[] }) {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-8 flex flex-col items-center gap-3 rounded-3xl border border-white/60 bg-white/70 p-14 text-center backdrop-blur-xl"
+          className="mt-8 flex flex-col items-center gap-3 rounded-3xl border border-line bg-surface p-14 text-center backdrop-blur-xl"
         >
           <motion.span
             animate={{ rotate: [0, -12, 12, 0] }}
@@ -53,14 +53,14 @@ export default function RemindersList({ items }: { items: Item[] }) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.06 }}
                 whileHover={{ x: 4 }}
-                className="flex items-center justify-between gap-4 rounded-2xl border border-white/60 bg-white/70 p-4 backdrop-blur-xl"
+                className="flex items-center justify-between gap-4 rounded-2xl border border-line bg-surface p-4 backdrop-blur-xl"
               >
                 <div className="flex items-center gap-3">
                   <span
                     className={`flex h-11 w-11 items-center justify-center rounded-2xl text-lg ${
                       expired
-                        ? "bg-gradient-to-br from-rose-100 to-pink-100"
-                        : "bg-gradient-to-br from-amber-100 to-orange-100"
+                        ? "bg-gradient-to-br from-rose-100 to-pink-100 dark:from-rose-500/20 dark:to-pink-500/15"
+                        : "bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/15"
                     }`}
                   >
                     {expired ? "⌛" : "⏳"}
@@ -68,7 +68,7 @@ export default function RemindersList({ items }: { items: Item[] }) {
                   <div>
                     <Link
                       href={`/all-products/${item.id}`}
-                      className="font-semibold text-ink hover:text-violet-700"
+                      className="font-semibold text-ink hover:text-violet-700 dark:text-violet-300"
                     >
                       {item.product_name}
                     </Link>
@@ -78,7 +78,7 @@ export default function RemindersList({ items }: { items: Item[] }) {
 
                 <span
                   className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold ${
-                    expired ? "bg-rose-100/80 text-rose-700" : "bg-amber-100/80 text-amber-700"
+                    expired ? "bg-rose-100/80 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300" : "bg-amber-100/80 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300"
                   }`}
                 >
                   {formatTimeLeft(item.expiry_date)}

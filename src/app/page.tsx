@@ -8,11 +8,13 @@ import Testimonials from "@/components/landing/Testimonials";
 import FAQ from "@/components/landing/FAQ";
 import Footer from "@/components/landing/Footer";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
       <AnimatedBackground intensity={0.55} />
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <BrandStrip />

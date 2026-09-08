@@ -52,7 +52,7 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-xl"
+        className="w-full max-w-sm rounded-3xl border border-line bg-surface-solid p-8 shadow-xl"
       >
         <div className="mb-6 flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-500 text-white">
@@ -60,12 +60,12 @@ export default function LoginPage() {
           </span>
           <div className="leading-tight">
             <p className="font-semibold">Biltro</p>
-            <p className="text-xs text-black/50">Warranty Vault</p>
+            <p className="text-xs text-ink-soft">Warranty Vault</p>
           </div>
         </div>
 
         <h1 className="text-2xl font-bold">Welcome back</h1>
-        <p className="mt-1 text-sm text-black/60">Sign in to see your warranties.</p>
+        <p className="mt-1 text-sm text-ink-soft">Sign in to see your warranties.</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <input
@@ -74,7 +74,7 @@ export default function LoginPage() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:border-violet-500"
+            className="w-full rounded-xl border border-field-border px-4 py-3 text-sm outline-none focus:border-violet-500"
           />
           <input
             type="password"
@@ -82,7 +82,7 @@ export default function LoginPage() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:border-violet-500"
+            className="w-full rounded-xl border border-field-border px-4 py-3 text-sm outline-none focus:border-violet-500"
           />
 
           {error && <p className="text-sm text-red-600">{error}</p>}
@@ -112,7 +112,7 @@ export default function LoginPage() {
           </motion.button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-black/60">
+        <p className="mt-6 text-center text-sm text-ink-soft">
           New to Biltro?{" "}
           <Link href="/signup" className="font-medium text-violet-600">
             Create an account

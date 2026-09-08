@@ -10,20 +10,20 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-14 text-center"
+        className="mb-10 text-center sm:mb-14"
       >
-        <span className="rounded-full bg-violet-100 px-4 py-1 text-xs font-medium text-violet-700">
+        <span className="rounded-full bg-violet-100 px-4 py-1 text-xs font-medium text-violet-700 dark:bg-violet-500/18 dark:text-violet-200">
           Loved by users
         </span>
-        <h2 className="mt-4 text-3xl font-bold md:text-4xl">Real people. Real peace of mind.</h2>
+        <h2 className="mt-4 text-2xl font-bold text-ink sm:text-3xl md:text-4xl">Real people. Real peace of mind.</h2>
       </motion.div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
@@ -32,7 +32,7 @@ export default function Testimonials() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
             whileHover={{ y: -5 }}
-            className={`edge-sheen relative overflow-hidden rounded-2xl bg-white/80 p-6 backdrop-blur transition-shadow duration-500 ${["glow-violet", "glow-cyan", "glow-fuchsia"][i % 3]}`}
+            className={`edge-sheen relative overflow-hidden rounded-2xl bg-surface p-6 backdrop-blur transition-shadow duration-500 ${["glow-violet", "glow-cyan", "glow-fuchsia"][i % 3]}`}
           >
             <p className="text-sm leading-relaxed text-ink/80">&ldquo;{t.quote}&rdquo;</p>
             <p className="mt-4 text-sm font-semibold text-ink">{t.name}</p>

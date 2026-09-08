@@ -10,10 +10,10 @@ export default async function AddNewPage() {
 
   if ((count ?? 0) >= FREE_ITEM_LIMIT) {
     return (
-      <div className="mx-auto max-w-lg rounded-3xl bg-white p-10 text-center shadow-sm">
+      <div className="mx-auto max-w-lg rounded-3xl border border-line bg-surface p-10 text-center backdrop-blur-xl">
         <span className="text-3xl">🔒</span>
         <h1 className="mt-4 text-xl font-bold">You&apos;ve used all {FREE_ITEM_LIMIT} free items</h1>
-        <p className="mt-2 text-sm text-black/60">
+        <p className="mt-2 text-sm text-ink-soft">
           You&apos;re on the free plan, which covers up to {FREE_ITEM_LIMIT} warranties. Remove an old
           item to add a new one, paid plans are coming soon.
         </p>
