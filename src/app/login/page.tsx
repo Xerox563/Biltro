@@ -25,9 +25,8 @@ export default function LoginPage() {
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-    setLoading(false);
-
     if (error) {
+      setLoading(false);
       if (error.message.toLowerCase().includes("email not confirmed")) {
         setNeedsConfirmation(true);
       } else {
@@ -36,6 +35,9 @@ export default function LoginPage() {
       return;
     }
 
+    // keep the loading state on so the button stays in its spinner state
+    // right up until the dashboard takes over, instead of snapping back to
+    // normal for a moment first
     router.push("/dashboard");
     router.refresh();
   }
@@ -106,8 +108,11 @@ export default function LoginPage() {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 py-3 text-sm font-semibold text-white shadow-lg disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 py-3 text-sm font-semibold text-white shadow-lg disabled:opacity-60"
           >
+            {loading && (
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+            )}
             {loading ? "Signing in..." : "Sign in"}
           </motion.button>
         </form>
