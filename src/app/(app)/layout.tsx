@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { FREE_ITEM_LIMIT } from "@/lib/plan";
 import Sidebar from "@/components/dashboard/Sidebar";
 import MobileNav from "@/components/dashboard/MobileNav";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
+
+/* signed-in pages are private per-user data, not content to rank — keep them out of search entirely */
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();

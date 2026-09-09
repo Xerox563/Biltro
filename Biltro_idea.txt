@@ -1,0 +1,71 @@
+BILTRO
+Is the idea scalable, and how I would actually take it to market
+
+
+THE PRODUCT IN ONE LINE
+
+Biltro lets someone snap a photo of a bill, has AI pull out the product name, shop, purchase date, and warranty period automatically, and then reminds them before the warranty runs out. The problem it solves is real. People lose bills and warranty cards all the time, and when something breaks a few months later they end up paying full price for a repair they were actually covered for.
+
+
+IS IT TECHNICALLY SCALABLE
+
+For where the product is today, with a small number of users, yes. It runs on Next.js, Vercel, and Supabase, which is a proven combination and will not be the thing that holds the product back early on.
+
+There are three practical things worth fixing before real traffic arrives, though none of them require rebuilding anything.
+
+The page that reads a bill using AI does not check whether the person calling it is logged in, and there is no limit on how often it can be hit. Someone could call it directly and run up the AI bill without ever using the app. This is the one to fix first.
+
+Bill photos are sent to the server exactly as taken, without shrinking them first. A normal phone photo can be several megabytes, so every upload costs more than it needs to, and this will eventually bump into size limits as usage grows.
+
+The daily reminder job loads every warranty in the database and sends emails one at a time in a loop. That is fine for hundreds of items, but will need batching once there are thousands.
+
+None of this is a sign of bad architecture. It is just the normal list of things you tighten up before opening the doors to a lot of people.
+
+
+IS IT SCALABLE AS A BUSINESS
+
+This is the harder question, and the honest answer is that selling it directly to individual people as a monthly subscription is a tough road.
+
+The core issue is frequency. A person buys a new phone, laptop, or appliance maybe once or twice a year. After they upload one bill, there is very little reason for them to open the app again until their next purchase, which could be months away. Apps that people barely open are difficult to build a subscription business around, because people forget they exist and are reluctant to keep paying for something they touch twice a year. This is not a flaw unique to Biltro, it is the same pattern that has kept other warranty tracking apps small.
+
+The idea works far better as something a business offers to its own customers, rather than something an individual pays for directly. Retailers, e-commerce platforms, and insurance companies already deal with warranties constantly. If one of them offered warranty tracking as a built in perk, quietly powered by Biltro behind the scenes, that business would pay for it because it makes their customers happier and reduces support headaches. That is a much easier sale than asking a stranger to remember to pay a few dollars a month for something they rarely use.
+
+
+IF I WERE ACTUALLY SCALING AND SELLING THIS, HERE IS HOW I WOULD DO IT
+
+Step one, pick one narrow wedge instead of trying to sell to everyone at once.
+
+Rather than pitching "retailers, insurers, and e-commerce platforms" all at the same time, I would pick a single, specific type of buyer to start with. The best fit is probably a mid sized electronics or appliance retailer, or an extended warranty provider, because they already have a direct financial reason to care about this. Every time a customer forgets they have a warranty and pays out of pocket for a repair, that customer trusts the retailer a little less, and every warranty claim that does get filed correctly, on the other hand, is basically free goodwill for the retailer. So the pitch is not "buy a cool app," it is "reduce complaints and increase repeat purchases by handling something your customers already expect you to help with."
+
+I would try to get one paying pilot customer in this space before trying to build anything more elaborate. A single retailer or warranty company willing to try this with even a few hundred of their customers gives you a real case study, real usage data, and a reference you can point to when talking to the next one. Trying to build a fully general, white labeled, multi tenant platform before anyone has actually paid for it is how most B2B pivots stall out.
+
+Step two, make the pilot as easy as possible to say yes to.
+
+For that first customer, I would not force them to change how thexit
+ey operate. Instead of asking them to build an integration into their checkout system right away, I would offer the simplest possible version, something like a private, branded link or QR code they hand out at the point of sale, which lets the customer register their warranty in under a minute, no separate app download required. This keeps the pilot cheap and fast to set up, which matters a lot when you are trying to convince a business to try something new. The deeper checkout integration and API can come once there is proof this actually helps them.
+
+Step three, build the parts that only matter once you have a real business client.
+
+Once there is a real paying pilot, the technical priorities become clear. Data needs to be organized by company, not just by person, so one retailer's customers are kept fully separate from another's. The look needs to be easy to swap per client so it feels like the retailer's own feature rather than something branded Biltro. And the retailer needs a simple dashboard showing something like how many customers have registered a warranty and how many are actively being tracked, since they are paying for the outcome, not for the same personal dashboard an individual user would want.
+
+Step four, change how it is priced.
+
+A flat "five dollars a month" subscription does not make sense once you are selling to a business. I would price it based on usage instead, for example a small fee per warranty registered, or per active customer per month, with a minimum monthly amount so it is worth setting up. This lines up your revenue with how much value the retailer is actually getting, and it is a familiar pricing shape for a business buyer, closer to how they already pay for a lot of other software vendors.
+
+Step five, use the first deal to get the next ones.
+
+Once there is one working pilot, I would use it directly as the sales pitch for the next few. Something concrete like "we helped this retailer register warranties for a thousand purchases in the first month with zero manual data entry" is a far stronger opening than a generic pitch about the idea. From there, the natural next targets are similar retailers in the same category, extended warranty and insurance companies who already sell warranty coverage and want an easy way to actually deliver on it, and eventually e-commerce platforms who could offer this as a plugin or app in their own ecosystem, similar to how apps get distributed inside Shopify's app store.
+
+Step six, keep the consumer app alive, but as a smaller side door rather than the main business.
+
+The existing signup and personal dashboard do not need to disappear. They are useful for word of mouth, for demos, and for individual users who find it on their own. But I would stop treating consumer subscriptions as the main revenue plan, and treat the business side as the actual company.
+
+
+WHAT DOES NOT NEED TO CHANGE AT ALL
+
+The part that actually took the most work, reading a photographed bill and pulling out the product, shop, date, and warranty length using AI, along with the reminder email system, stays exactly as it is. That is the real product. Everything described above is about who is allowed to see the data, how a business plugs into it, and how you get someone to pay for it. The engine underneath does not need to be touched.
+
+
+BOTTOM LINE
+
+The idea is a good one and the technology behind it is sound. It is just not naturally suited to being sold directly to individual people as a subscription, because the problem it solves does not come up often enough for that to work. Sold instead as something a business offers its own customers, starting with one well chosen pilot customer rather than trying to build a fully general platform up front, it has a real path to becoming an actual company rather than a side project.
