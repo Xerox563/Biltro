@@ -119,6 +119,20 @@ body {
   will-change: backdrop-filter;
 }
 
+/* the blur radius itself is the main GPU cost of backdrop-filter; phones
+   render dozens of these glass cards over a moving background at once, so
+   turning the radius down there cuts the per-frame cost a lot while still
+   reading as "glass". Desktop keeps the full radius. */
+@media (max-width: 768px), (pointer: coarse) {
+  .backdrop-blur-xl,
+  .backdrop-blur-md,
+  .backdrop-blur,
+  .backdrop-blur-sm {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+}
+
 .glow-hover {
   transition: box-shadow 0.45s ease, transform 0.35s ease;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useReducedMotionMobile } from "@/lib/useReducedMotionMobile";
 
 const CELL = 56;
 
@@ -56,6 +57,8 @@ function FlowLayer({
 }
 
 export default function GlowGrid({ intensity = 0.5 }: { intensity?: number }) {
+  const reduced = useReducedMotionMobile();
+
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       {/* the plain grid, barely there, colour comes from the var so it flips with the theme */}
@@ -73,20 +76,25 @@ export default function GlowGrid({ intensity = 0.5 }: { intensity?: number }) {
           barely visible, and was the main source of flicker on Android) */}
       <FlowLayer opacity={0.3 * intensity} duration={40} gradient={flowGradient} />
 
-      {/* uneven brightness drifting across, so the glow is stronger here and softer there */}
-      <div className="absolute inset-0 overflow-hidden" style={{ ...gridMask, opacity: 0.3 * intensity }}>
-        <motion.div
-          animate={{ x: ["-10%", "10%", "-10%"], y: ["-8%", "8%", "-8%"], opacity: [0.4, 0.85, 0.4] }}
-          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -inset-1/4"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 30% 40%, #d946ef 0%, transparent 42%), radial-gradient(circle at 72% 68%, #06b6d4 0%, transparent 42%)",
-          }}
-        />
-      </div>
+      {/* phones with many backdrop-blur cards on screen at once can't keep up with
+          these extra full-viewport animated layers underneath them, so they're
+          skipped there; desktop keeps the full effect */}
+      {!reduced && (
+        <>
+          {/* uneven brightness drifting across, so the glow is stronger here and softer there */}
+          <div className="absolute inset-0 overflow-hidden" style={{ ...gridMask, opacity: 0.3 * intensity }}>
+            <motion.div
+              animate={{ x: ["-10%", "10%", "-10%"], y: ["-8%", "8%", "-8%"], opacity: [0.4, 0.85, 0.4] }}
+              transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -inset-1/4"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 30% 40%, #d946ef 0%, transparent 42%), radial-gradient(circle at 72% 68%, #06b6d4 0%, transparent 42%)",
+              }}
+            />
+          </div>
 
-      {beams.map((beam, i) => {
+          {beams.map((beam, i) => {
         const vertical = beam.axis === "v";
         const position = vertical
           ? { [beam.from]: beam.offset, top: 0, bottom: 0, width: 1 }
@@ -117,8 +125,10 @@ export default function GlowGrid({ intensity = 0.5 }: { intensity?: number }) {
               }}
             />
           </motion.div>
-        );
-      })}
+            );
+          })}
+        </>
+      )}
     </div>
   );
 }
