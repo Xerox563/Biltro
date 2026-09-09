@@ -68,9 +68,10 @@ export default function GlowGrid({ intensity = 0.5 }: { intensity?: number }) {
         }}
       />
 
-      {/* soft bloom under the lines, then the lines themselves */}
-      <FlowLayer opacity={0.22 * intensity} blur={3} duration={40} gradient={flowGradient} />
-      <FlowLayer opacity={0.34 * intensity} duration={40} gradient={flowGradient} />
+      {/* the lines themselves (dropped the separate blurred bloom layer underneath;
+          it doubled the animated full-viewport repaint cost for a bloom that was
+          barely visible, and was the main source of flicker on Android) */}
+      <FlowLayer opacity={0.3 * intensity} duration={40} gradient={flowGradient} />
 
       {/* uneven brightness drifting across, so the glow is stronger here and softer there */}
       <div className="absolute inset-0 overflow-hidden" style={{ ...gridMask, opacity: 0.3 * intensity }}>
